@@ -39,7 +39,13 @@
 				<option value="4.5">4.5</option>
 				<option value="5">5</option>
 			</select>
-			&mdash; <button id="start">Start the ranking</button></div>
+			&mdash; <button id="start">Start the ranking</button>
+		</div>
+		<div id="results">
+			<h3>Results:</h1>
+			<ol>
+			</ol>
+		</div>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -70,6 +76,8 @@
 					used.push(allowedLosses);
 				}
 			}
+			$("#results").html("<h3>Results:</h1><ol start='" + used.length + "'></ol>");
+			$("#results").show();
 			console.log(names);
 			newMovies();
 			happening = true;
@@ -84,6 +92,9 @@
 				$("#right").hide();
 				eliminated.push(names.splice(rightIndex,1)[0]);
 				happening = false;
+				$("#results ol").prepend("<li>" + eliminated[eliminated.length-1] + "</li>");
+				$("#results ol").prepend("<li>" + used[0] + "</li>");
+				$("#results ol").attr("start", 1);
 			}
 		}
 	});
@@ -96,6 +107,9 @@
 				$("#left").hide();
 				eliminated.push(names.splice(leftIndex,1)[0]);
 				happening = false;
+				$("#results ol").prepend("<li>" + eliminated[eliminated.length-1] + "</li>");
+				$("#results ol").prepend("<li>" + names[0] + "</li>");
+				$("#results ol").attr("start", 1);
 			}
 		}
 	});
@@ -113,6 +127,8 @@
 			urls.splice(index,1);
 			ratings.splice(index,1);
 			used.splice(index,1);
+			$("#results ol").prepend("<li>" + eliminated[eliminated.length-1] + "</li>");
+			$("#results ol").attr("start", used.length);
 		}
 		newMovies();
 	}
