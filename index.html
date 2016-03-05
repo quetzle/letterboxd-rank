@@ -8,27 +8,32 @@
 <body>
 	<h1>Letterboxd Rank</h1>
 	<div id="wrap">
-		<span></span>
-		<div id="left">
-			<div class="content">
-				<div class="title">Title</div>
-				<div class="other"><span class="year">Year</span><span class="ranking"> - &#9733;&#9733;&#9733;&#9733;&#189;</span></div>
+		<div class="column">
+			<div id="left">
+				<div class="content">
+					<div class="title">Title</div>
+					<div class="other"><span class="year">Year</span><span class="ranking"> - &#9733;&#9733;&#9733;&#9733;&#189;</span></div>
+				</div>
 			</div>
+			<div class="url urlleft"><a href="javascript:;" target="_blank">Link</a></div>
 		</div>
-		<div id="right">
-			<div class="content">
-				<div class="title">Title</div>
-				<div class="other"><span class="year">Year</span><span class="ranking"> - &#9733;&#9733;&#9733;&#9733;&#189;</span></div>
+		<div class="column">
+			<div id="right">
+				<div class="content">
+					<div class="title">Title</div>
+					<div class="other"><span class="year">Year</span><span class="ranking"> - &#9733;&#9733;&#9733;&#9733;&#189;</span></div>
+				</div>
 			</div>
+			<div class="url urlright"><a href="javascript:;" target="_blank">Link</a></div>
 		</div>
 	</div>
 	<div id="bottomtext">
 		<div><button id="skip">Skip</button></div>
-		<div>Upload a .csv file here: <input type="file" id="fileupload"/></div>
+		<div>Upload a .csv file here: <input type="file" id="fileupload"/> &mdash; <a href="http://letterboxd.com/settings/data/">Get Letterboxd data here</a></div>
 		<div>
 			Max number of losses: <input type="number" id="losses" value="1" min="1"> &mdash; Minimum rating:
 			<select id="minrating">
-				<option value="0.5" selected>0.5</option>
+				<option value="0.5">0.5</option>
 				<option value="1">1</option>
 				<option value="1.5">1.5</option>
 				<option value="2">2</option>
@@ -144,11 +149,13 @@
 		$("#left .year").text(years[leftIndex]);
 		starRating = " - " + star.repeat(ratings[leftIndex]) + half.repeat(Math.ceil(ratings[leftIndex] - Math.floor(ratings[leftIndex])));
 		$("#left .ranking").text(starRating);
+		$(".urlleft a").attr("href",urls[leftIndex]);
 		
 		$("#right .title").text(names[rightIndex]);
 		$("#right .year").text(years[rightIndex]);
 		starRating = " - " + star.repeat(ratings[rightIndex]) + half.repeat(Math.ceil(ratings[rightIndex] - Math.floor(ratings[rightIndex])));
 		$("#right .ranking").text(starRating);
+		$(".urlright a").attr("href",urls[rightIndex]);
 	}
 	</script>
 </body>
